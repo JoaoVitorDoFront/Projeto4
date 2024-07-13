@@ -11,6 +11,16 @@ body {
   color: var(--dark);
   text-align: center;
   margin: 0;
+  background-image: radial-gradient(
+      circle at left top,
+      rgb(142 173 213 / 0.7),
+      transparent 25em
+    ),
+    radial-gradient(
+      circle at right center,
+      rgb(142 173 213 / 0.5),
+      transparent 25em
+    );
 }
 
 .content-wrapper-center {
@@ -102,6 +112,7 @@ img {
   background-color: var(--gray);
   border-radius: 5px;
   padding: 1rem;
+  container: testemunho / inline-size;
 }
 
 .contato {
@@ -177,9 +188,20 @@ img {
 .testemunhos_wrapper {
   row-gap: 3rem;
 }
-/* .imagem {
+.testemunho_card {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-} */
+}
+
+@container (min-width: 675px) {
+  .testemunho_card {
+    flex-direction: row;
+    text-align: left;
+  }
+}
 .row > .sm-12 {
   grid-column: 1 / -1;
 }
@@ -192,6 +214,7 @@ img {
   }
   .row > .lg-6 {
     grid-column: span 6;
+    text-align: left;
   }
   .row > .lg-8-12 {
     grid-column: 8 / 13;
@@ -208,8 +231,38 @@ img {
   .row > .lg-1-7 {
     grid-column: 1 / 8;
   }
+  .row > .lg-1-6 {
+    grid-column: 1 / 7;
+  }
+  .row > .lg-7-12 {
+    grid-column: 7 / 13;
+  }
+  .contato_content {
+    text-align: left;
+    padding-right: 2rem;
+    align-items: center;
+  }
   .row {
     gap: 3rem;
+  }
+  .hero_title {
+    text-align: left;
+    margin-bottom: 6.25rem;
+  }
+  .testemunho_card {
+    flex-direction: column;
+    /* usei direction column pra nao ficar estranho se tiver duvidas tirar esse column e ver no site la pra poder entender melhor */
+    /* como agr no final to usando o container eu vou substituir esses itens */
+    align-items: center;
+  }
+
+  .testemunho_nome {
+    margin-left: 5rem;
+  }
+  .contato_content .btn {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    padding: 0.8rem 1.5rem;
   }
 }
 @media screen and (min-width: 46.25em) {
@@ -257,18 +310,28 @@ img {
   .results {
     text-align: left;
   }
-  .testemunho {
+  /* .testemunho {
     display: flex;
     gap: 1rem;
-  }
-  /* .testemunho_content p {
-    margin-left: 0.4rem;
+    como eu queria trabalhar com os cards com container eu add uma div amais logo o display flex tem q tar no pai do testemunho que agora é a classe testemunho_card
   } */
+  /* .testemunho_card {
+    display: flex;
+    gap: 1rem;
+    como agr no final to usando o container eu vou substituir esses itens
+  } */
+
   .contato_image {
     display: block;
     text-align: center;
   }
   .testemunho_nome {
     text-align: left;
+  }
+  h1 {
+    font-size: 3.625rem;
+  }
+  h2 {
+    font-size: 2.875rem;
   }
 }
