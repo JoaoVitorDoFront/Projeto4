@@ -33,7 +33,7 @@ body {
   list-style-type: none;
   padding: 0;
   text-align: right;
-  display: none;
+  /* display: none; */
 }
 
 .header-menu a {
@@ -195,8 +195,15 @@ img {
   align-items: center;
   text-align: center;
 }
-
-@container (min-width: 675px) {
+.icons li {
+  display: inline-block;
+  font-size: 1.5rem;
+}
+.icons li + li {
+  margin-left: 1rem;
+  /* esse li + li quer dizer que o margin left só vai ter qnd tiver uma li após outra li ou seja n vai começar pela primeira e sim pela segunda */
+}
+@container (min-width: 42.187em) {
   .testemunho_card {
     flex-direction: row;
     text-align: left;
@@ -287,18 +294,26 @@ img {
   .row {
     gap: 3rem;
   }
-  .header {
+  .header-menu {
     display: flex;
     justify-content: space-between;
   }
   .header-menu a {
     padding: 0;
   }
-  .header-menu {
+  .header {
+    align-items: center;
+  }
+  .menu-icon,
+  .menu-btn {
+    display: none;
+  }
+  /* .header-menu {
     display: flex;
     justify-content: flex-end;
     margin: 0;
-  }
+    NO FINAL DI PROJETO QUANDO EU FUI ARRUMAR OS 3 TRACINHO LA NO HEADER EU TIVE Q TIRAR ESSE HEADER MENU E COLOCAR ELE SEM SER EM MEDIA QUERIE
+  } */
   .header-menu li {
     margin-left: 2rem;
   }
@@ -334,4 +349,42 @@ img {
   h2 {
     font-size: 2.875rem;
   }
+}
+/* HAMBUGUER MENU */
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.header nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.menu-icon {
+  position: relative;
+  cursor: pointer;
+  /* user-select: none; */
+  /* usuario nao interaja com esse elemento: user select:none */
+}
+.nav-icon {
+  background-color: #333;
+  display: inline-block;
+  height: 2px;
+  width: 24px;
+  position: relative;
+}
+.nav-icon::after,
+.nav-icon::before {
+  background-color: #333;
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  content: "";
+  position: absolute;
+}
+.nav-icon::after {
+  transform: translateY(8px);
+}
+.nav-icon::before {
+  transform: translateY(-8px);
 }
