@@ -35,10 +35,12 @@ body {
   text-align: right;
   /* display: none; */
 }
-
+.header-menu li {
+  padding: 0.25em 0;
+}
 .header-menu a {
   display: block;
-  padding: 2em 0;
+  padding: 1.75em 0;
 }
 
 a {
@@ -304,6 +306,7 @@ img {
   .header {
     align-items: center;
   }
+
   .menu-icon,
   .menu-btn {
     display: none;
@@ -355,6 +358,38 @@ img {
   display: flex;
   justify-content: space-between;
 }
+.header-menu {
+  max-height: 0;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+  background-color: white;
+  transition: max-height 0.3s linear;
+  margin: 0;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+@media screen and (min-width: 46.25em) {
+  .header-menu {
+    position: static;
+    max-height: initial;
+    background-color: initial;
+  }
+}
+.menu-btn:checked ~ .header-menu {
+  /* se eu usasse o sinak de mais eu taria pegando o prox trem mas como esse proximo e um label e eu n qro editar o label, eu coloco ~ pra eu pegar o proximo do proximo */
+  /* tenho um input dps um label e dps uma ul eu quero pegar a ul logo se eu usasse o sinal de + eu ia editar o label mas eu n qro, lgoo eu vou usar o ~ pra pegar a ul */
+  max-height: 100vh;
+}
+.header-menu:focus-within {
+  max-height: 100vh;
+}
+.menu-btn:checked + .menu-icon .nav-icon {
+  /* to pegando o nav icon q esta dentro do menu-icon, porem pra eu selecionar eu tenho q pegar a q o pai delas q seria o menu-btn +(o mais quer dizwer q vou pegar a proxima), peguei a prox, porem eu quero pegar o prox so q o q está dentro dele ou seja pegando outra classe */
+  background-color: transparent;
+}
 .header nav {
   display: flex;
   flex-direction: column;
@@ -365,6 +400,7 @@ img {
   cursor: pointer;
   /* user-select: none; */
   /* usuario nao interaja com esse elemento: user select:none */
+  height: 24px;
 }
 .nav-icon {
   background-color: #333;
@@ -381,10 +417,22 @@ img {
   height: 2px;
   content: "";
   position: absolute;
+  transition: transform 0.2s;
 }
 .nav-icon::after {
   transform: translateY(8px);
 }
 .nav-icon::before {
   transform: translateY(-8px);
+}
+.menu-btn:checked + .menu-icon .nav-icon::before {
+  transform: rotate(-45deg);
+}
+.menu-btn:checked + .menu-icon .nav-icon::after {
+  transform: rotate(45deg);
+}
+.menu-btn:focus-visible + .menu-icon {
+  outline: 2px solid black;
+  outline-offset: 3px;
+  /* focusvisible: eu quero formatar apenas o focus quando for o focus via teclado e nao via mouse */
 }
